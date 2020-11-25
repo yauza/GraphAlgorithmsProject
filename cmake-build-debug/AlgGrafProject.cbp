@@ -80,6 +80,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/Jasiu/Documents/STUDIA/AlgGrafProject/Graph.cpp">
+			<Option target="AlgGrafProject"/>
+		</Unit>
+		<Unit filename="C:/Users/Jasiu/Documents/STUDIA/AlgGrafProject/Graph.h">
+			<Option target="AlgGrafProject"/>
+		</Unit>
 		<Unit filename="C:/Users/Jasiu/Documents/STUDIA/AlgGrafProject/main.cpp">
 			<Option target="AlgGrafProject"/>
 		</Unit>

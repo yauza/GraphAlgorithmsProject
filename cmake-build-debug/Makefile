@@ -142,6 +142,33 @@ AlgGrafProject/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AlgGrafProject.dir\build.make CMakeFiles/AlgGrafProject.dir/build
 .PHONY : AlgGrafProject/fast
 
+Graph.obj: Graph.cpp.obj
+
+.PHONY : Graph.obj
+
+# target to build an object file
+Graph.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AlgGrafProject.dir\build.make CMakeFiles/AlgGrafProject.dir/Graph.cpp.obj
+.PHONY : Graph.cpp.obj
+
+Graph.i: Graph.cpp.i
+
+.PHONY : Graph.i
+
+# target to preprocess a source file
+Graph.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AlgGrafProject.dir\build.make CMakeFiles/AlgGrafProject.dir/Graph.cpp.i
+.PHONY : Graph.cpp.i
+
+Graph.s: Graph.cpp.s
+
+.PHONY : Graph.s
+
+# target to generate assembly for a file
+Graph.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AlgGrafProject.dir\build.make CMakeFiles/AlgGrafProject.dir/Graph.cpp.s
+.PHONY : Graph.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -178,6 +205,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... AlgGrafProject
+	@echo ... Graph.obj
+	@echo ... Graph.i
+	@echo ... Graph.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
