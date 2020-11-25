@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "AlgGrafProject.exe"
   "AlgGrafProject.exe.manifest"
   "AlgGrafProject.pdb"
+  "CMakeFiles/AlgGrafProject.dir/Graph.cpp.obj"
   "CMakeFiles/AlgGrafProject.dir/main.cpp.obj"
   "libAlgGrafProject.dll.a"
 )

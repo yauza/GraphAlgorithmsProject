@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "C:/Users/Jasiu/Documents/STUDIA/AlgGrafProject/Graph.cpp" "C:/Users/Jasiu/Documents/STUDIA/AlgGrafProject/cmake-build-debug/CMakeFiles/AlgGrafProject.dir/Graph.cpp.obj"
   "C:/Users/Jasiu/Documents/STUDIA/AlgGrafProject/main.cpp" "C:/Users/Jasiu/Documents/STUDIA/AlgGrafProject/cmake-build-debug/CMakeFiles/AlgGrafProject.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
