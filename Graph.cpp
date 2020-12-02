@@ -10,7 +10,7 @@ Graph :: Graph(int V, int B){
 
 
 void Graph :: printGraph(){
-    for(auto p : weights){
-        printf("krawedz: %d do %d, waga: %d\n", p.first.first, p.first.second, p.second);
+    for(auto p : cost){
+        printf("krawedz: %d do %d, koszt: %d\n", p.first.first, p.first.second, p.second);
     }
 }

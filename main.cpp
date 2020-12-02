@@ -20,8 +20,8 @@ bool bfs(Graph* G, int s, int t, vector<int>& parent){
     while(!Q.empty()){
         int u = Q.back();
         for(int v : G->edges[u]){
-            if(!visited[v] && G->weights[make_pair(u, v)] > 0){
-                visited[v] = True;
+            if(!visited[v] && G->cost[make_pair(u, v)] > 0){
+                visited[v] = true;
                 parent[v] = u;
                 Q.push(v);
             }
@@ -60,21 +60,54 @@ int main() {
         vector<int> v(n, 0);
         G->playersScore = v;
 
-        for(int i = 0; i < (n*(n-1))/2; i++) {
+        int T = 0, s = 0, t = ((n*(n-1))/2) + n + 1, King = ((n*(n-1))/2) + 1;
+
+        for(int i = 1; i < ((n*(n-1))/2)+1; i++) {
             int x, y, w, b;
             scanf("%d %d %d %d", &x, &y, &w, &b);
-            if (w == x) {
-                G->edges[y].push_back(x);
-                G->edgesReversed[x].push_back(y);
-                G->weights[make_pair(x, y)] = b;
-            }else {
-                G->edges[x].push_back(y);
-                G->edgesReversed[y].push_back(x);
-                G->weights[make_pair(y, x)] = b;
+
+            x += ((n*(n-1))/2)+1;
+            y += ((n*(n-1))/2)+1;
+            w += ((n*(n-1))/2)+1;
+
+            G->edges[s].push_back(i);
+            G->edges[i].push_back(x);
+            G->edges[i].push_back(y);
+
+            G->residual[make_pair(i, x)] = 1;
+            G->residual[make_pair(i, y)] = 1;
+
+            G->cost[make_pair(s, i)] = 1;
+            G->residual[make_pair(s, i)] = 1;
+            if(w == x) {
+                G->cost[make_pair(i, x)] = 0;
+                G->cost[make_pair(i, y)] = b;
+            }else{
+                G->cost[make_pair(i, y)] = 0;
+                G->cost[make_pair(i, x)] = b;
             }
 
-            G->playersScore[w]++;
+            if(w == King) T++;
+
         }
+
+        for(int j = 0; j < n-T; j++){
+            int x = T + j;
+
+            for(int k = 0; k < n; k++){
+                int player = k + ((n*(n-1))/2) + 1;
+                G->edges[player].push_back(t);
+
+                if(player != King) G->cost[make_pair(player, t)] = 0;
+                else G->cost[make_pair(player, t)] = x;
+
+                G->residual[make_pair(player, t)] = x;
+            }
+
+
+        }
+
+
         G->printGraph();
 
 

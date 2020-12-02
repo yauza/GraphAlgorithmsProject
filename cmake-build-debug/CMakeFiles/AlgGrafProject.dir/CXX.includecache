@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/Jasiu/Documents/STUDIA/AlgGrafProject/Graph.cpp
-Graph.h
-C:/Users/Jasiu/Documents/STUDIA/AlgGrafProject/Graph.h
-
 C:/Users/Jasiu/Documents/STUDIA/AlgGrafProject/Graph.h
 unordered_set
 -
@@ -23,7 +19,7 @@ vector
 C:/Users/Jasiu/Documents/STUDIA/AlgGrafProject/main.cpp
 iostream
 -
-stdlib.h
+cstdlib
 -
 unordered_set
 -
@@ -35,4 +31,6 @@ vector
 -
 Graph.h
 C:/Users/Jasiu/Documents/STUDIA/AlgGrafProject/Graph.h
+queue
+-
 

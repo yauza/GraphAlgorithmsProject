@@ -18,9 +18,10 @@ class Graph {
 public:
     int V;
     int Budget;
-    unordered_map<int, vector<int>> edges;                  //jeżeli x wygrywa z y to krawędź jest od y do x
-    unordered_map<int, vector<int>> edgesReversed;          //na odwrót
-    unordered_map<pair<int, int>, int, pair_hash> weights;
+    unordered_map<int, vector<int>> edges;
+    unordered_map<int, vector<int>> edgesReversed;
+    unordered_map<pair<int, int>, int, pair_hash> cost;
+    unordered_map<pair<int, int>, int, pair_hash> residual;
     vector<int> playersScore;
 
     Graph(int V, int B);
