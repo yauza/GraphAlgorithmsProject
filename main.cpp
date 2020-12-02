@@ -9,6 +9,13 @@
 
 using namespace std;
 
+void printVector(vector<int> v){
+    for(auto i : v){
+        printf("%d ", i);
+    }
+    printf("\n");
+}
+
 bool bfs(Graph* G, int s, int t, vector<int>& parent){
     queue<int> Q;
     for(int i = 0; i < G->V; i++) parent[i] = -1;
@@ -19,8 +26,10 @@ bool bfs(Graph* G, int s, int t, vector<int>& parent){
 
     while(!Q.empty()){
         int u = Q.back();
+        Q.pop();
+
         for(int v : G->edges[u]){
-            if(!visited[v] && G->cost[make_pair(u, v)] > 0){
+            if(!visited[v] && G->residual[make_pair(u, v)] > 0){
                 visited[v] = true;
                 parent[v] = u;
                 Q.push(v);
@@ -33,16 +42,40 @@ bool bfs(Graph* G, int s, int t, vector<int>& parent){
 }
 
 int maxflow(Graph* G, int s, int t){
+
     int max_flow = 0;
     vector<int> parent(G->V);
 
+    bool isPath = bfs(G, s, t, parent);
+
+    while(isPath){
+        int x = t;
+        int path_flow = INT_MAX;
+
+        while(x != s){
+            path_flow = min(path_flow, G->residual[make_pair(parent[x], x)]);
+            x = parent[x];
+        }
+
+        int u = t;
+
+        while(u != s){
+            int v = parent[u];
+            G->residual[make_pair(v, u)] -= path_flow;
+            G->residual[make_pair(u, v)] += path_flow;
+            u = parent[u];
+        }
+
+        max_flow += path_flow;
+
+        isPath = bfs(G, s, t, parent);
+    }
+
+    return max_flow;
 }
 
-bool solve(int n, vector<int> playersScore){
-    int King = 0;
-    if(playersScore[King] < (n-1)/2){
+bool solve(){
 
-    }
 }
 
 int main() {
@@ -54,8 +87,8 @@ int main() {
         scanf("%d", &Budget);
         scanf("%d", &n);
 
-
-        auto* G = new Graph(n, Budget);
+        int V = 2 + n + ((n*(n-1))/2);
+        auto* G = new Graph(V, Budget);
 
         vector<int> v(n, 0);
         G->playersScore = v;
@@ -110,6 +143,8 @@ int main() {
 
         G->printGraph();
 
+        int res = maxflow(G, s, t);
+        printf("\n\n Maksymalny przeplyw: %d", res);
 
     }
 
