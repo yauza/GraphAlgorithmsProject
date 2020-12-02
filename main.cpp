@@ -42,6 +42,7 @@ bool bfs(Graph* G, int s, int t, vector<int>& parent){
 }
 
 int maxflow(Graph* G, int s, int t){
+
     int max_flow = 0;
     vector<int> parent(G->V);
 
