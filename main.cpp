@@ -44,16 +44,19 @@ bool bfs(Graph* G, int s, int t, vector<int>& parent){
 int maxflow(Graph* G, int s, int t){
 
     int max_flow = 0;
+    //int test_min_cost = 0;
     vector<int> parent(G->V);
 
     bool isPath = bfs(G, s, t, parent);
 
     while(isPath){
+        //int test_cost = 0;
         int x = t;
         int path_flow = INT_MAX;
 
         while(x != s){
             path_flow = min(path_flow, G->residual[make_pair(parent[x], x)]);
+            //test_cost += G->cost[make_pair(parent[x], x)] * path_flow;
             x = parent[x];
         }
 
@@ -67,11 +70,56 @@ int maxflow(Graph* G, int s, int t){
         }
 
         max_flow += path_flow;
-
+        //test_min_cost += test_cost;
+        //printf("\nkazdy po kolei: %d \n", test_cost);
         isPath = bfs(G, s, t, parent);
     }
 
+    //printf("AAA %d AAA", test_min_cost);
     return max_flow;
+}
+
+
+// bellman ford used to detect negative cycles
+vector<pair<int, int>> bellman_ford(Graph* G, int s){
+    int n = G->V;
+    vector<pair<int, int>> cycle;
+    vector<int> dist(n, INT_MAX);
+    vector<int> parent(n, -1);
+
+    dist[s] = 0;
+    parent[s] = s;
+
+    for(int i = 1; i < n; i++){
+        for(auto edge : G->edges){
+            for(auto j : edge.second){
+                int u = edge.first;
+                int cost = G->cost[make_pair(u, j)];
+                if(dist[u] != INT_MAX && dist[u] + cost < dist[j]){
+                    dist[j] = dist[u] + cost;
+                    parent[j] = u;
+                }
+            }
+        }
+    }
+
+    for(int i = 0; i < n; i++){
+        for(auto v : G->edges[i]){
+            int cost = G->cost[make_pair(i, v)];
+            if(dist[v] > dist[i] + cost){
+                pair<int, int> edge = make_pair(i, v);
+                unordered_set<pair<int, int>, pair_hash> sTemp;
+
+                while(sTemp.find(edge) == sTemp.end()){
+                    sTemp.insert(edge);
+                    cycle.push_back(edge);
+                    edge = make_pair(parent[edge.first], edge.first);
+                }
+            }
+        }
+    }
+
+    return cycle;
 }
 
 bool solve(){
