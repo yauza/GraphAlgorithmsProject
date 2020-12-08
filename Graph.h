@@ -18,11 +18,17 @@ class Graph {
 public:
     int V;
     int Budget;
+    int players;
+    int King;
+    int s, t;
     unordered_map<int, vector<int>> edges;
     unordered_map<int, vector<int>> edgesReversed;
     unordered_map<pair<int, int>, int, pair_hash> cost;
     unordered_map<pair<int, int>, int, pair_hash> residual;
+    unordered_map<pair<int, int>, pair<int, int>, pair_hash> flow_capacity;
     vector<int> playersScore;
+
+
 
     Graph(int V, int B);
 
